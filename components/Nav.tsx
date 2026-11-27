@@ -18,8 +18,9 @@ export default function Nav() {
     { name: "Feed", url: "/feed" },
     { name: "Make Post", url: "/post" },
   ];
+
   return (
-    <nav className="flex items-center justify-between px-6 py-3 shadow-md sticky top-0 bg-white">
+    <nav className="flex items-center justify-between px-6 py-3 shadow-md sticky top-0 bg-white z-50">
       <Link href={"/"} className="flex items-center gap-1 z-40">
         <Image
           src={"/logo.png"}
@@ -33,12 +34,12 @@ export default function Nav() {
 
       <div className="flex items-center gap-5 max-md:hidden">
         <div className="flex items-center gap-5 text-lg">
-          {navItems.map((item) => (
-            <Link href={item.url}>{item.name}</Link>
+          {navItems.map((item, i) => (
+            <Link href={item.url} key={i}>{item.name}</Link>
           ))}
         </div>
         <Link
-          href={"/signin"}
+          href={"/auth"}
           className="flex items-center gap-1 text-lg text-white rounded-full px-6 py-2"
           style={{ backgroundColor: Colors.orange }}
         >
@@ -54,12 +55,12 @@ export default function Nav() {
       </button>
 
       <div className={`md:hidden bg-white h-dvh w-full absolute top-0 left-0 pt-20 flex-col items-center gap-8 px-10 ${navOpen ? "flex" : "hidden"}`}>
-        {navItems.map((item) => (
-          <Link href={item.url}>{item.name}</Link>
+        {navItems.map((item, i) => (
+          <Link href={item.url} key={i}>{item.name}</Link>
         ))}
 
         <Link
-          href={"/signin"}
+          href={"/auth"}
           className="flex items-center gap-1 text-lg text-white rounded-full w-full justify-center py-2"
           style={{ backgroundColor: Colors.orange }}
         >
